@@ -1,10 +1,10 @@
 package com.electronic.medicine.controllers;
 
+import com.electronic.medicine.entity.Users;
+import com.electronic.medicine.services.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -12,6 +12,8 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 public class Head {
+
+    private final UserService userService;
 
     private List<String> description = List.of(
             "Добро пожаловать на наш YouTube канал! Здесь мы делимся актуальными знаниями в области медицины, здоровья " +
@@ -34,15 +36,16 @@ public class Head {
                     "практиковать и борьба с недостоверной, неэтичной и устаревшей информацией."
     );
 
-    @CrossOrigin(origins = "http://localhost:5173")
+    @CrossOrigin
     @GetMapping("/description")
     public List<String> sayHello() {
         return description;
     }
 
-//    @GetMapping("/description")
-//    public List<String> sayHello() {
-//        return description;
-//    }
+    @CrossOrigin
+    @GetMapping("/users")
+    public List<Users> getUsers() {
+        return userService.getAllUsers();
+    }
 
 }
