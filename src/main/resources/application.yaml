@@ -1,16 +1,35 @@
+logging:
+  level:
+    com:
+      electronic:
+        medicine: debug
 spring:
   jpa:
+  datasource:
     database: POSTGRESQL
+    driver-class-name: org.postgresql.Driver
     hibernate:
       dialect: org.hibernate.dialect.PostgreSQLDialect
       ddl-auto: none
-  datasource:
-    driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5000/postgres
-#    url: jdbc:postgresql://localhost:5432/postgres
     username: admin
     password: admin
   liquibase:
     enabled: true
     change-log: classpath:db/changelog/db.changelog-master.yaml
     contexts: dev
+  mail:
+    host: smtp.mail.ru
+    port: 465
+    protocol: smtps
+mail:
+  debug: false
+
+jwt:
+  secret:
+    lifetimeAccess: 5m
+    lifetimeRefresh: 30m
+
+
+
+
